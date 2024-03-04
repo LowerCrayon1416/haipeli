@@ -11,13 +11,9 @@ public class Player : MonoBehaviour
     private Master controls;
     private Vector2 moveInput;
 
-    private void Awake()
-    {
-        controls = new Master();
-    }
-
     private void OnEnable() 
     {
+        controls = new Master();
         controls.Enable();
     }
 

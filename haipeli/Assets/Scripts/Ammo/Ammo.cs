@@ -14,6 +14,6 @@ public class Ammo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       transform.Translate(Vector2.right * 10 * Time.deltaTime * -1 ); 
+       transform.Translate(Vector2.up * Time.deltaTime * speed); 
     }
 }
