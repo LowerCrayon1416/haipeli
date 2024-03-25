@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     private Master controls;
     private Vector2 moveInput;
 
+    public Transform gunTransform;
+
     private void OnEnable() 
     {
         controls = new Master();
@@ -22,15 +24,35 @@ public class Player : MonoBehaviour
         controls.Disable();
     }
 
+    void Update()
+    {
+        Shoot();
+        Aim();
+    }   
+
     void FixedUpdate()
     {
         Move();
     }
 
-    
-    private void Move(){
+    private void Shoot()
+    {
+        if(controls.Player.Shoot.triggered) {
+            Debug.Log("Shoot");
+            GameObject bullet = BulletPoolManager.Instance.GetBullet();
+            bullet.transform.position = gunTransform.position;
+            bullet.transform.rotation = gunTransform.rotation;
+        }
+    }
+
+    private void Move()
+    {
         moveInput = controls.Player.Move.ReadValue<Vector2>();
         Vector2 movement = new Vector2(moveInput.x, moveInput.y) * moveSpeed * Time.fixedDeltaTime;
         body.MovePosition(body.position + movement);
     }
+    private void Aim(){
+
+    }
+    
 }
