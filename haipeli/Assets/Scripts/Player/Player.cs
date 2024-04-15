@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
 
     private Master controls;
     private Vector2 moveInput;
+    private Vector2 aimInput;
 
     public Transform gunTransform;
 
@@ -51,8 +52,14 @@ public class Player : MonoBehaviour
         Vector2 movement = new Vector2(moveInput.x, moveInput.y) * moveSpeed * Time.fixedDeltaTime;
         body.MovePosition(body.position + movement);
     }
+    
     private void Aim(){
-
+        aimInput = controls.Player.Aim.ReadValue<Vector2>();
+        if(aimInput.sqrMagnitude> 0.1f){
+            gunTransform.up = aimInput;
+            float angle = (Mathf.Atan2(aimInput.x, -aimInput.y)) * Mathf.Rad2Deg;
+            gunTransform.rotation = Quaternion.Euler(0, 0, angle);
+        }
     }
     
 }
