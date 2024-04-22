@@ -27,15 +27,21 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if(!GameManager.instance.IsGamePlay())
+        {
+            return;
+        }
         Shoot();
         Aim();
     }   
 
-    void FixedUpdate()
-    {
+    private void FixedUpdate(){
+        if(!GameManager.instance.IsGamePlay())
+        {
+            return;
+        }
         Move();
     }
-
     private void Shoot()
     {
         if(controls.Player.Shoot.triggered) {
@@ -55,11 +61,10 @@ public class Player : MonoBehaviour
     
     private void Aim(){
         aimInput = controls.Player.Aim.ReadValue<Vector2>();
-        if(aimInput.sqrMagnitude> 0.1f){
+        if(aimInput.sqrMagnitude > 0.1f){
             gunTransform.up = aimInput;
             float angle = (Mathf.Atan2(aimInput.x, -aimInput.y)) * Mathf.Rad2Deg;
             gunTransform.rotation = Quaternion.Euler(0, 0, angle);
         }
     }
-    
 }

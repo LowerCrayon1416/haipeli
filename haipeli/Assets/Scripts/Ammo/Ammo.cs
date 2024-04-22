@@ -4,16 +4,28 @@ using UnityEngine;
 
 public class Ammo : MonoBehaviour
 {
-    public float speed = 1;
-    // Start is called before the first frame update
+    private float lifeTimer;
+    public float speed = 5;
+
+    private void OnEnable()
+    {
+        lifeTimer = 2;
+    }
+   
+   
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
        transform.Translate(Vector2.up * Time.deltaTime * speed); 
+       lifeTimer = Time.deltaTime;
+       if(lifeTimer <= 0)
+       {
+        BulletPoolManager.Instance.ReturnBullet(gameObject);
+       }
     }
 }

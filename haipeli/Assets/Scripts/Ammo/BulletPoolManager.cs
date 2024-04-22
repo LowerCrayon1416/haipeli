@@ -16,7 +16,6 @@ public class BulletPoolManager : MonoBehaviour {
     {
         Instance = this;
         InitializePool();
-        GetBullet();
     }
 
     private void InitializePool (){
@@ -39,6 +38,9 @@ public class BulletPoolManager : MonoBehaviour {
             return null;
         }
     }
-
-
+    public void ReturnBullet(GameObject bullet)
+    {
+        bullet.SetActive(false);
+        bulletpool.Enqueue(bullet);
+    }
 }

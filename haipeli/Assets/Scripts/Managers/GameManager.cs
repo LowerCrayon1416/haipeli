@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public gameStates currentGameState;
 
-    private static GameManager instance;
+    public static GameManager instance;
 
     void Awake()
     {
@@ -26,5 +26,10 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public bool IsGamePlay()
+    {
+        return currentGameState == gameStates.Gameplay;
     }
 }
