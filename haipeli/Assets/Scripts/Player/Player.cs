@@ -25,6 +25,11 @@ public class Player : MonoBehaviour
         controls.Disable();
     }
 
+    void Start()
+    {
+        GameManager.instance.playerController = this;
+    }
+
     void Update()
     {
         if(!GameManager.instance.IsGamePlay())

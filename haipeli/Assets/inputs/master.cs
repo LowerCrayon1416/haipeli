@@ -114,7 +114,7 @@ public partial class @Master: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""de219702-0db0-4736-8825-29b72fadb60c"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

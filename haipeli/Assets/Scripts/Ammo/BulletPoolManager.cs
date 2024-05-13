@@ -8,7 +8,7 @@ public class BulletPoolManager : MonoBehaviour {
 
     public GameObject bulletPrefab;
 
-    public int bulletAmount = 20;
+    public int bulletAmount = 1000;
 
     private Queue<GameObject> bulletpool = new Queue<GameObject>();
      

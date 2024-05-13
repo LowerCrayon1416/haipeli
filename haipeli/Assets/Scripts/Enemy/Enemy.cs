@@ -5,6 +5,28 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 
+    void FixedUpdate()
+   {
+       if(!GameManager.instance.IsGamePlay())
+       {
+           return;
+       }
+       
+       GetPlayer();
+
+       Move();
+   }
+
+    private void Move()
+   {
+       if(playerTransform == null)
+       {
+           return;
+       }
+       Vector2 direction = (playerTransform.position - transform.position).normalized;
+       body.MovePosition(body.position + direction * currentSpeed * Time.fixedDeltaTime);
+   }
+
     private float currentSpeed = 1f;
     
     public Rigidbody2D body;
@@ -21,4 +43,8 @@ public class Enemy : MonoBehaviour
 
     private Transform playerTransform;
 
+    private void GetPlayer()
+    {
+        playerTransform = GameManager.instance.playerController.transform;
+    }
 }
